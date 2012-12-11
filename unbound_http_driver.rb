@@ -72,8 +72,10 @@ class UnboundHttpDriver < Sinatra::Base
     end
     File.open(CONFIG_FILE, 'w') {|io| io.write(c)}
     result = %x{/usr/sbin/unbound-control reload}
+    puts "Reload output"
+    puts result
     unless $?.exitstatus == 0
-      puts result
+      
       return [500, 'unable to restart unbound'] 
     end
     result
