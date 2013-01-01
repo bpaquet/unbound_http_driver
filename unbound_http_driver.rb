@@ -2,6 +2,7 @@ require 'json'
 require 'sinatra/reloader' if ENV['RACK_ENV'] == 'development'
 require 'sinatra/base'
 require 'yaml'
+require 'ipaddress'
 
 CONFIG_FILE = ENV['CONFIG_FILE'] || '/etc/unbound/unbound.conf'
 LOCAL_DB = ENV['LOCAL_DB'] || 'unbound.yml'
@@ -43,6 +44,7 @@ class UnboundHttpDriver < Sinatra::Base
       config[:zones][params[:zone]] = {}
     end
     return [409, 'Already exists'] if config[:zones][params[:zone]][params[:name]]
+    return [400, 'Value is not an ip address'] unless IPAddress.valid? params[:ip]
     config[:zones][params[:zone]][params[:name]] = params[:ip]
     write_local config
     'ok'

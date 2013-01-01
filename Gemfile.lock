@@ -3,6 +3,7 @@ GEM
   specs:
     backports (2.6.5)
     eventmachine (1.0.0)
+    ipaddress (0.8.0)
     json (1.7.5)
     kgio (2.7.4)
     rack (1.4.1)
@@ -35,6 +36,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ipaddress
   json
   rake
   sinatra
