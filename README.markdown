@@ -21,5 +21,6 @@ The `server_config` section of the database file can be edited manually to add m
 * `POST /reload`: reload unbound configuration from current database
 * `PUT /toto.com/www/10.10.0.1`: add A record `www.toto.com` to `10.10.0.1`
 * `DELETE /toto.com/www`: delete A record `www.toto.com`
+* `DELETE /toto.com`: delete zone `toto.com`
 * `GET /toto.com`: display content of zone `toto.com` in JSON
 

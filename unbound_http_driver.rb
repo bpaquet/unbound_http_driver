@@ -60,6 +60,16 @@ class UnboundHttpDriver < Sinatra::Base
     'ok'
   end
 
+  delete '/:zone' do
+    config = read_local
+    unless config[:zones][params[:zone]]
+      return [404, 'Not found']
+    end
+    config[:zones].delete(params[:zone])
+    write_local config
+    'ok'
+  end
+
   post '/reload' do
     config = read_local
     c = "server:\n"
